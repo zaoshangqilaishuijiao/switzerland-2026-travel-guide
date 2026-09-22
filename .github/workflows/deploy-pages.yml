@@ -32,7 +32,13 @@ jobs:
           sources=(./*.html)
           ((${#sources[@]})) || { echo "No root HTML files found"; exit 1; }
           for source in "${sources[@]}"; do
-            node scripts/build-public-guide.js "$source" "_site/$(basename "$source")"
+            if grep -q '__GUIDE_BUILD_SHA__' "$source"; then
+              node scripts/build-public-guide.js "$source" "_site/$(basename "$source")"
+            else
+              # Legacy entry pages may link to another local HTML file. They do not
+              # contain deployment placeholders, so preserve them byte-for-byte.
+              cp "$source" "_site/$(basename "$source")"
+            fi
           done
       - uses: actions/upload-pages-artifact@v4
         with:

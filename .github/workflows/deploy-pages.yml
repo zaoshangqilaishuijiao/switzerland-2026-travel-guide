@@ -28,12 +28,12 @@ jobs:
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
-          for source in ./*.html; do
-            [ "$(basename "$source")" = "index.html" ] && continue
-            node .github/build-public-guide.cjs "$source" "_site/$(basename "$source")"
+          shopt -s nullglob
+          sources=(./*.html)
+          ((${#sources[@]})) || { echo "No root HTML files found"; exit 1; }
+          for source in "${sources[@]}"; do
+            node scripts/build-public-guide.js "$source" "_site/$(basename "$source")"
           done
-          [ ! -d images ] || cp -R images _site/images
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site

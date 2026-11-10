@@ -1,0 +1,23 @@
+{
+  "id": "./?guide=01f9e279606a6ea062381900",
+  "name": "房子的意瑞法 9.24—10.06 旅行攻略",
+  "short_name": "意大利·瑞士·法国攻略",
+  "lang": "zh-CN",
+  "start_url": "./italy-switzerland-france-2026-travel-guide.html",
+  "scope": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/guide-01f9e279606a6ea062381900-ecaddbf0ee75-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/guide-01f9e279606a6ea062381900-6c8089bc5a03-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
